@@ -1,4 +1,8 @@
 {
   "name": "SpinlistApp",
-  "displayName": "SpinlistApp"
+  "displayName": "SpinlistApp",
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-7913011400514913~5038561494",
+    "ios_app_id": "ca-app-pub-7913011400514913~5038561494"
+  }
 }
