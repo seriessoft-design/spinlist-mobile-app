@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "297226794110",
+    "project_id": "spinlist-d8597",
+    "storage_bucket": "spinlist-d8597.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297226794110:android:b6f9671fdf41c4030b542f",
+        "android_client_info": {
+          "package_name": "com.seriessoft.spinlist"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxLLOraPBVWz3XisG9zbnIKlisYuRiz9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
