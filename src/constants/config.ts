@@ -52,7 +52,7 @@ export const ADMOB_CONFIG = {
 
 // RevenueCat Configuration
 export const REVENUECAT_CONFIG = {
-  apiKey: 'test_HumBUryPmujsEfxFoWN1YaquAd1', // Test API key
+  apiKey: 'goog_wrYRWLQYoXwWMRQvq5QOVRA0UBJ', // Production API key for Google Play
   // Production keys will be added after app store configuration
   iosApiKey: '',
   androidApiKey: '',
