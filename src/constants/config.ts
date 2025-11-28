@@ -52,10 +52,10 @@ export const ADMOB_CONFIG = {
 
 // RevenueCat Configuration
 export const REVENUECAT_CONFIG = {
-  apiKey: 'goog_wrYRWLQYoXwWMRQvq5QOVRA0UBJ', // Production API key for Google Play
-  // Production keys will be added after app store configuration
-  iosApiKey: '',
-  androidApiKey: '',
+  apiKey: 'goog_wrYRWLQYoXwWMRQvq5QOVRA0UBJ', // Fallback key
+  // Platform-specific production keys
+  iosApiKey: '', // Will be added after iOS app store configuration
+  androidApiKey: 'goog_wrYRWLQYoXwWMRQvq5QOVRA0UBJ', // Production API key for Google Play
 };
 
 // Subscription Products
@@ -121,4 +121,5 @@ export const ONBOARDING_SCREENS = [
 
 // Development Mode
 export const __DEV__ = process.env.NODE_ENV === 'development';
-export const USE_TEST_ADS = __DEV__; // Use test ad units in development
+// IMPORTANT: Always use false for production builds to avoid AdMob policy violations
+export const USE_TEST_ADS = process.env.NODE_ENV !== 'production' && __DEV__;

@@ -23,9 +23,13 @@ export const initializeRevenueCat = async (userId: string) => {
     // Configure SDK
     Purchases.setLogLevel(LOG_LEVEL.DEBUG);
     
-    // Use test API key for now (will be replaced with platform-specific keys)
+    // Use platform-specific API key
+    const apiKey = Platform.OS === 'ios' 
+      ? (REVENUECAT_CONFIG.iosApiKey || REVENUECAT_CONFIG.apiKey)
+      : (REVENUECAT_CONFIG.androidApiKey || REVENUECAT_CONFIG.apiKey);
+    
     Purchases.configure({
-      apiKey: REVENUECAT_CONFIG.apiKey,
+      apiKey: apiKey,
       appUserID: userId,
     });
     

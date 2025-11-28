@@ -19,9 +19,13 @@ const App = () => {
       // Initialize AdMob (non-blocking)
       try {
         await initializeAdMob();
+        console.log('AdMob initialized, now loading first ad');
+        // Wait a moment for AdMob to be fully ready
+        await new Promise(resolve => setTimeout(resolve, 500));
         // Preload first interstitial ad
         try {
           await loadInterstitialAd();
+          console.log('First interstitial ad loaded successfully');
         } catch (adError) {
           console.log('Failed to load initial ad (non-critical):', adError);
         }
