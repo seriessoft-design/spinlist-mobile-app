@@ -1,6 +1,7 @@
 package com.spinlistapp
 
 import android.app.Application
+import android.util.Log
 import com.facebook.react.PackageList
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactHost
@@ -9,19 +10,46 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
 
 class MainApplication : Application(), ReactApplication {
 
+  companion object {
+    private const val TAG = "MainApplication"
+  }
+
   override val reactHost: ReactHost by lazy {
-    getDefaultReactHost(
-      context = applicationContext,
-      packageList =
-        PackageList(this).packages.apply {
-          // Packages that cannot be autolinked yet can be added manually here, for example:
-          // add(MyReactNativePackage())
-        },
-    )
+    try {
+      getDefaultReactHost(
+        context = applicationContext,
+        packageList =
+          PackageList(this).packages.apply {
+            // Packages that cannot be autolinked yet can be added manually here, for example:
+            // add(MyReactNativePackage())
+          },
+      )
+    } catch (e: Exception) {
+      Log.e(TAG, "Failed to initialize ReactHost", e)
+      throw RuntimeException("ReactHost initialization failed", e)
+    }
   }
 
   override fun onCreate() {
-    super.onCreate()
-    loadReactNative(this)
+    try {
+      super.onCreate()
+      
+      // Initialize React Native with error handling
+      try {
+        loadReactNative(this)
+        Log.i(TAG, "React Native loaded successfully")
+      } catch (e: Exception) {
+        Log.e(TAG, "Failed to load React Native", e)
+        throw RuntimeException("React Native initialization failed", e)
+      }
+      
+      // Log successful initialization
+      Log.i(TAG, "MainApplication initialized successfully")
+      
+    } catch (e: Exception) {
+      Log.e(TAG, "Critical error in MainApplication.onCreate()", e)
+      // Re-throw to ensure app doesn't start in broken state
+      throw e
+    }
   }
 }

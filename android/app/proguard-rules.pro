@@ -60,3 +60,80 @@
     java.lang.Object writeReplace();
     java.lang.Object readResolve();
 }
+
+# ============================================================================
+# ADDITIONAL COMPREHENSIVE KEEP RULES FOR GOOGLE PLAY COMPLIANCE
+# ============================================================================
+
+# Keep all annotations - CRITICAL for React Native and libraries
+-keepattributes *Annotation*
+-keepattributes Signature
+-keepattributes Exceptions
+-keepattributes InnerClasses
+-keepattributes EnclosingMethod
+-keepattributes SourceFile
+-keepattributes LineNumberTable
+
+# Keep Parcelable implementations - Required for Android IPC
+-keep class * implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator *;
+}
+
+# Keep enum classes - Prevents enum crashes
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}
+
+# Keep React Native annotations
+-keep @interface com.facebook.proguard.annotations.DoNotStrip
+-keep @interface com.facebook.proguard.annotations.KeepGettersAndSetters
+
+# Keep classes with @DoNotStrip annotation
+-keep @com.facebook.proguard.annotations.DoNotStrip class *
+-keepclassmembers class * {
+    @com.facebook.proguard.annotations.DoNotStrip *;
+}
+
+# Keep React Native bridge methods - CRITICAL
+-keepclassmembers class * {
+    @com.facebook.react.bridge.ReactMethod *;
+}
+
+# Keep React Native TurboModules (New Architecture)
+-keep class * extends com.facebook.react.turbomodule.core.interfaces.TurboModule { *; }
+-keep interface com.facebook.react.turbomodule.core.interfaces.TurboModule { *; }
+
+# Keep all View classes for React Native
+-keep public class * extends android.view.View {
+    public <init>(android.content.Context);
+    public <init>(android.content.Context, android.util.AttributeSet);
+    public <init>(android.content.Context, android.util.AttributeSet, int);
+    public void set*(***);
+}
+
+# Keep constructors for all classes
+-keepclassmembers class * {
+    public <init>(...);
+}
+
+# Keep Gson/JSON serialization (if used)
+-keepclassmembers class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
+# Keep BuildConfig
+-keep class **.BuildConfig { *; }
+
+# Keep R class
+-keepclassmembers class **.R$* {
+    public static <fields>;
+}
+
+# Suppress warnings for missing classes
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-dontwarn org.conscrypt.**
+-dontwarn org.bouncycastle.**
+-dontwarn org.openjsse.**
