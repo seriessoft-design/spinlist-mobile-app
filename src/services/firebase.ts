@@ -141,7 +141,7 @@ const createUserDocument = async (
 export const getUserData = async (uid: string): Promise<User | null> => {
   try {
     const doc = await firestore().collection('users').doc(uid).get();
-    if (doc.exists) {
+    if (doc.exists()) {
       const data = doc.data();
       return {
         uid: data?.uid,
@@ -239,7 +239,7 @@ export const getUserLists = async (userId: string): Promise<List[]> => {
 export const getList = async (listId: string): Promise<List | null> => {
   try {
     const doc = await firestore().collection('lists').doc(listId).get();
-    if (doc.exists) {
+    if (doc.exists()) {
       const data = doc.data();
       return {
         id: doc.id,

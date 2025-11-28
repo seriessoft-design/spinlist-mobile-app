@@ -21,7 +21,7 @@ const App = () => {
         await initializeAdMob();
         console.log('AdMob initialized, now loading first ad');
         // Wait a moment for AdMob to be fully ready
-        await new Promise(resolve => setTimeout(resolve, 500));
+        await new Promise<void>(resolve => setTimeout(() => resolve(), 500));
         // Preload first interstitial ad
         try {
           await loadInterstitialAd();

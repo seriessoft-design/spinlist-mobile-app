@@ -12,7 +12,7 @@ import {
   ScrollView,
   Alert,
   ActivityIndicator,
-} from 'react';
+} from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import { COLORS, PRO_FEATURES } from '../constants/config';
